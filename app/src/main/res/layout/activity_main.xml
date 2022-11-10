@@ -4,14 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="@color/silver">
+
 
     <TextView
         android:id="@+id/tvStepsTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Steps"
-        android:textSize="20sp"
+        android:textColor="#FF5722"
+        android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline8"
         app:layout_constraintEnd_toStartOf="@+id/guideline7"
         app:layout_constraintStart_toStartOf="@+id/guideline6"
@@ -24,7 +27,7 @@
         android:background="@drawable/btn3"
         android:onClick="doStart"
         android:text="Start"
-        android:textColor="#F8F5F5"
+        android:textColor="#FF5722"
         app:layout_constraintEnd_toStartOf="@+id/guideline7"
         app:layout_constraintStart_toStartOf="@+id/guideline10"
         app:layout_constraintTop_toTopOf="@+id/guideline2"
@@ -37,7 +40,7 @@
         android:background="@drawable/btn3"
         android:onClick="doReset"
         android:text="Reset"
-        android:textColor="#E6E0E0"
+        android:textColor="#FF5722"
         app:layout_constraintBottom_toTopOf="@+id/guideline11"
         app:layout_constraintEnd_toStartOf="@+id/guideline10"
         app:layout_constraintStart_toStartOf="@+id/guideline6"
@@ -48,8 +51,9 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:background="@drawable/btn3"
+        android:onClick="ShowStats"
         android:text="Show Run"
-        android:textColor="#F4F3F3"
+        android:textColor="#FF5722"
         app:layout_constraintBottom_toTopOf="@+id/guideline5"
         app:layout_constraintEnd_toStartOf="@+id/guideline10"
         app:layout_constraintStart_toStartOf="@+id/guideline6"
@@ -75,8 +79,8 @@
         android:layout_height="100dp"
         android:background="@drawable/btn3"
         android:onClick="doStop"
-        android:text="Pause"
-        android:textColor="#F4EEEE"
+        android:text="Stop"
+        android:textColor="#FF5722"
         app:layout_constraintBottom_toTopOf="@+id/guideline5"
         app:layout_constraintEnd_toStartOf="@+id/guideline7"
         app:layout_constraintStart_toStartOf="@+id/guideline10"
@@ -96,14 +100,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="198dp" />
+        app:layout_constraintGuide_begin="297dp" />
 
     <TextView
         android:id="@+id/tvTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Time"
-        android:textSize="20sp"
+        android:textColor="#FF5722"
+        android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline9"
         app:layout_constraintEnd_toStartOf="@+id/guideline7"
         app:layout_constraintStart_toStartOf="@+id/guideline6"
@@ -114,7 +119,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="0"
-        android:textSize="24sp"
+        android:textSize="34sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline3"
         app:layout_constraintEnd_toStartOf="@+id/guideline7"
         app:layout_constraintStart_toStartOf="@+id/guideline6"
@@ -125,7 +130,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="0:00"
-        android:textSize="24sp"
+        android:textSize="34sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline2"
         app:layout_constraintEnd_toStartOf="@+id/guideline7"
         app:layout_constraintStart_toStartOf="@+id/guideline6"
@@ -136,7 +141,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="26dp" />
+        app:layout_constraintGuide_begin="155dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline5"
@@ -164,14 +169,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="112dp" />
+        app:layout_constraintGuide_begin="238dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="305dp" />
+        app:layout_constraintGuide_begin="365dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline10"
@@ -186,6 +191,17 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_begin="551dp" />
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fitness Tracker"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline4"
+        app:layout_constraintEnd_toStartOf="@+id/guideline7"
+        app:layout_constraintStart_toStartOf="@+id/guideline6"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

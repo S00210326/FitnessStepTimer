@@ -24,8 +24,10 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     CountUpTimer timer;
     TextView timecounter;
 
+
     Button startBtn ;
     Button pauseBtn;
+    Button statBtn;
 
     //steps stuff
     TextView tvStepsNum;
@@ -44,8 +46,9 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         startBtn = findViewById(R.id.btnStart);
         pauseBtn = findViewById(R.id.btnPause);
 
-//       resumeBtn1 = findViewById(R.id.btnResume);
-//       resumeBtn1.setVisibility(View.GONE);
+        statBtn = findViewById(R.id.btnStats);
+
+
 
         //TIMER STUFF
         timecounter = findViewById(R.id.tvCount);
@@ -55,15 +58,15 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             }
         };
 
-
+        mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+        mSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         //COUNTER STUFF
         tvStepsNum = findViewById(R.id.tvstepsNum);
         // we are going to use the sensor service
-        mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
-        mSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+
     }
 
-//BUTTON FOR SSTART
+//BUTTON FOR START
     public void doStart(View view) {
         timer.start();
         Toast.makeText(this, "Started counting", Toast.LENGTH_SHORT).show();
@@ -71,24 +74,23 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
         startBtn.setVisibility((View.GONE));
 
+        statBtn.setVisibility((View.GONE));
+
+        mSensorManager.registerListener(this, mSensor,
+                SensorManager.SENSOR_DELAY_NORMAL);
     }
 //BUTTON FOR STOP
     public void doStop(View view) {
         timer.cancel();
         Toast.makeText(this, "Stopped Run", Toast.LENGTH_SHORT).show();
-//        pauseBtn.setVisibility(View.GONE);
-//        resumeBtn1.setVisibility(View.VISIBLE);
 
+        statBtn.setVisibility((View.VISIBLE));
+
+        mSensorManager.unregisterListener(this);
 
 
     }
-    //PAUSE BUTTON NOT IMPLEMETNED
-    public void doResume(View view){
-        timer.start();
-//        resumeBtn1.setVisibility(View.GONE);
-        pauseBtn.setVisibility(View.VISIBLE);
 
-    }
 
     //RESET BUTTON
     public void doReset(View view) {
@@ -99,25 +101,15 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         startBtn.setVisibility(View.VISIBLE);
     }
 
-    public void ShowStats(View view){
-        Intent intent = new Intent(this, StatsPage.class);
-        startActivity(intent);
-        String steps = tvStepsNum.toString();
 
-        intent.putExtra("stepstaken", String.valueOf(tvStepsNum) );
-        intent.putExtra("timetaken", String.valueOf(timecounter));
-        startActivity(intent);
-    }
-//TIMER STUFF
+
     protected void onResume() {
         super.onResume();
-        // turn on the sensor
-        mSensorManager.registerListener(this, mSensor,
-                SensorManager.SENSOR_DELAY_NORMAL);
+
     }
     protected void onPause() {
         super.onPause();
-        mSensorManager.unregisterListener(this);    // turn off listener to save power
+
     }
 
     @Override
@@ -144,6 +136,24 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             tvStepsNum.setText(String.valueOf(counter1));
             highLimit = false;
         }
+    }
+    public void ShowStats(View view){
+
+        if (counter1 >= 1 ){
+            Intent intent = new Intent(this, StatsPage.class);
+            startActivity(intent);
+            String steps = tvStepsNum.getText().toString();
+            String time = timecounter.getText().toString();
+
+            intent.putExtra("stepstaken",steps);
+            intent.putExtra("timetaken", time);
+
+            startActivity(intent);
+        }
+        else{
+            Toast.makeText(this, "Need to Run first", Toast.LENGTH_SHORT).show();
+        }
+
     }
 
     @Override
